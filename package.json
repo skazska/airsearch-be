@@ -1,0 +1,29 @@
+{
+  "name": "airsearch-be",
+  "version": "1.0.0",
+  "description": "air flight search back-end",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skazska/airsearch-be.git"
+  },
+  "author": "Karimov Said",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skazska/airsearch-be/issues"
+  },
+  "homepage": "https://github.com/skazska/airsearch-be#readme",
+  "dependencies": {
+    "cors": "^2.8.3",
+    "debug": "^2.6.8",
+    "express": "^4.15.3",
+    "moment": "^2.18.1",
+    "morgan": "^1.8.2",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4",
+    "twix": "^1.2.0"
+  }
+}
