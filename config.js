@@ -44,5 +44,5 @@ if (process.env.NODE_ENV) {
 //merge env config
 module.exports = _.extend(
     module.exports,
-    require('./config/' + (process.env.NODE_ENV || 'dev')) || {}
+    require('./config/' + (process.env.NODE_ENV || 'development')) || {}
 );

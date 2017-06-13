@@ -22,11 +22,12 @@ module.exports = {
 
       return rp(options)
           .then(resp => {
-              return resp;
+              return resp || [];
           })
           .catch(reason => {
               if (reason.statusCode === 404) return [];
               console.log(reason);
+              return [];
           });
   }
 };

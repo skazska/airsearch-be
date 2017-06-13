@@ -14,11 +14,12 @@ const
 
 const app = express();
 
-app.use(logger('dev'));
+app.use(logger('development'));
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
 
+app.use(express.static(__dirname + (app.get('env') === 'development'?'/public_dev':'/public')));
 
 //add response shortcuts
 app.use(function (req, res, next) {
@@ -68,7 +69,7 @@ app.use(function (req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'dev') {
+if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         if (!res.xStatusCode || (res.xStatusCode && res.xStatusCode < 400)) res.statusCode = err.status || 500;
         res.setHeader('Content-Type', res.xContentType || 'text');
