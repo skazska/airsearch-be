@@ -8,7 +8,9 @@
 import moment from 'moment/src/moment.js';
 
 //app modules
-import Component from '../component/index.js';
+import Component from '../index.js';
+import FlightList from '../flightList/index.js';
+
 
 //locals
 import tpl from './template.html';
@@ -81,15 +83,16 @@ var SearchResults = Component.prototype.extend(
         render: function (data) {
             this.superclass.render.call(this, data);
 
-            var $header = this.$tpl.find('#searchResultHeader');
-            var $list = this.$tpl.find('#searchResultList');
+            var $header = this.$tpl.find('.searchResultHeader');
+            var $list = this.$tpl.find('.searchResultList');
 
             this._transformData(data).forEach(function (dayFlights) {
                 var $dayFlights = $('<div class="day-flights col-sm-12 col-md-6 col-lg-4"></div>').appendTo($list);
 
-                $dayFlights.append($('<h3>'+dayFlights.dt.format("dddd, MMMM Do YYYY, h:mm:ss a")+'<small>'+
-                    dayFlights.tz +'</small>'+'</h3>'));
+                $dayFlights.append($('<h4>'+dayFlights.dt.format("dddd, MMMM Do YYYY")+'<small>'+
+                    dayFlights.tz +'</small>'+'</h4>'));
 
+                new FlightList().init(dayFlights).build($dayFlights);
 
             });
 
@@ -105,12 +108,13 @@ var SearchResults = Component.prototype.extend(
                     var dt = flight.start.dateTime.format('YYYY-MM-DD');
                     if (!dates[dt]) dates[dt] = [];
                     dates[dt].push(flight);
+                    return dates;
                 },
                 {}
             );
 
             return Object.keys(dates).map(function (key) {
-                return {dt: dates[key].start.dateTime, tz: dates[key].start.timeZone, flights: dates[key]};
+                return {dt: dates[key][0].start.dateTime, tz: dates[key][0].start.timeZone, flights: dates[key]};
             });
         }
 

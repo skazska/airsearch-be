@@ -8,7 +8,7 @@
 import moment from 'moment/src/moment.js';
 
 //app modules
-import Component from '../component/index.js';
+import Component from '../index.js';
 
 //locals
 import tpl from './template.html';
@@ -72,8 +72,8 @@ var SearchForm = Component.prototype.extend(
                 self.data = {
                     from: from,
                     to: to,
-                    dateFrom: date.add(-2, 'days').toDate(),
-                    dateTo: date.add(2, 'days').toDate()
+                    dateFrom: date.add(-2, 'days'),
+                    dateTo: date.add(2, 'days')
                 }
             }
             return result;

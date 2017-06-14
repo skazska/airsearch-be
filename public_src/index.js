@@ -8,8 +8,8 @@ import $ from 'jquery/src/jquery.js';
 
 import css from './main.scss';
 
-import Navbar from './navbar/index.js';
-import App from './app/index.js';
+import Navbar from './component/navbar/index.js';
+import App from './component/app/index.js';
 
 /* app root */
 var $body = $('body');

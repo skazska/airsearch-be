@@ -7,7 +7,7 @@
 //import $ from 'jquery/src/jquery.js';
 
 //app modules
-import Component from '../component/index.js';
+import Component from '../index.js';
 
 //locals
 import tpl from './template.html';

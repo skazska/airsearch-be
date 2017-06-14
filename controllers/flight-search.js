@@ -14,6 +14,12 @@ require('twix');
 
 module.exports = {
     getList: async (req, res, next) => {
+        if (process.env.NODE_ENV === 'development') {
+            var fs = require('fs');
+            var result = JSON.parse(fs.readFileSync('./test/flights.json'));
+            return res.xSet(200, result, next);
+        }
+
         //params validation:  search string q with at least 2 letters
         let dateFrom = moment(req.query.dateFrom);
         if (!dateFrom.isValid())

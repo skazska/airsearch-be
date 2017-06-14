@@ -3,10 +3,10 @@
 import $ from 'jquery/src/jquery.js';
 
 //app modules
-import Component from '../component/index.js';
+import Component from '../index.js';
 import Form from '../searchForm/index.js';
 import Results from '../searchResults/index.js';
-import Service from '../service/index.js';
+import FlightService from '../../service/flight/index.js';
 
 //locals
 import tpl from './template.html';
@@ -21,7 +21,7 @@ var App = Component.prototype.extend(
             this.superclass.init.call(this, tpl);
             this.form = new Form();
             this.results = new Results();
-            this.searchService = new Service().init('http://localhost:3000/api/search');
+            this.searchService = new FlightService().init();
 
             return this;
         },
@@ -54,7 +54,7 @@ var App = Component.prototype.extend(
             self.searchService
                 .on('data', function (data) {
                     console.log(data);
-                    this.results.rebuild(self.$tpl.find('#searchResults'), data);
+                    self.results.rebuild(self.$tpl.find('#searchResults'), data);
                 })
                 .on('error', function (err) {
                     console.error(err);
